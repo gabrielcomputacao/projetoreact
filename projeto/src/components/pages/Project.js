@@ -9,7 +9,7 @@ function Project(){
             <p>
                 Crie seu projeto e o orçamento
             </p>
-            <FormProject/>
+            <FormProject btnText="Criar Projeto"/>
         </div>
     )
 

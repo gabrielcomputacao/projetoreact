@@ -1,10 +1,13 @@
 import style from "./Select.module.css"
 
-function Select(){
+function Select({text,name,options,handleOnChange,value}){
 
     return (
         <div className={style.form_control}>
-            <select></select>
+            <label htmlFor={name}>{text}</label>
+            <select name={name} id={name}>
+                <option selected>Selecione uma Opção</option>
+            </select>
         </div>
     )
 }

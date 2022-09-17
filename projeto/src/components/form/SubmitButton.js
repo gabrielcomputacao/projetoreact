@@ -1,10 +1,10 @@
 import style from "./SubmitButton.module.css"
 
-function SubmitButton(){
+function SubmitButton(props){
 
     return (
-        <div className={style.btn}>
-            
+        <div >
+            <button className={style.btn}>{props.text}</button>
         </div>
     )
 }
