@@ -2,7 +2,7 @@ import style from "./Input.module.css";
 
 function Input({ text, type, name, handleOnChange, placeholder, value }) {
   return (
-    <div div className={style.form_control}>
+    <div className={style.form_control}>
       
         <label htmlFor={name}>{text}</label>
         <input
@@ -10,7 +10,7 @@ function Input({ text, type, name, handleOnChange, placeholder, value }) {
           name={name}
           type={type}
           placeholder={placeholder}
-          OnChange={handleOnChange}
+          onChange={handleOnChange}
           value={value}
         />
       

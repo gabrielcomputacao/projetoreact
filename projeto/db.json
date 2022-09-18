@@ -7,7 +7,7 @@
         },
         {
             "id":2,
-            "name": "Projeto"
+            "name": "projeto"
         },
         {
             "id":3,
@@ -15,10 +15,10 @@
         },
         {
             "id":4,
-            "name": "Programador"
+            "name": "programador"
         },{
             "id":5,
-            "name": "Planejamento"
+            "name": "planejamento"
         }
 
     ]
