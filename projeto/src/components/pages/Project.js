@@ -19,7 +19,10 @@ function Project(){
            body: JSON.stringify(project)
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            navigate("/listaProjects")
+        } )
         .catch( err => console.log(err))
     }
 

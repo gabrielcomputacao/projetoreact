@@ -1,25 +1,37 @@
 {
-    "projects" : [],
-    "categories":[
-        {
-            "id":1,
-            "name": "Infra"
-        },
-        {
-            "id":2,
-            "name": "projeto"
-        },
-        {
-            "id":3,
-            "name": "Design"
-        },
-        {
-            "id":4,
-            "name": "programador"
-        },{
-            "id":5,
-            "name": "planejamento"
-        }
-
-    ]
+  "projects": [
+    {
+      "name": "Constante",
+      "budget": "2344",
+      "category": {
+        "id": "4",
+        "name": "PROGRAMADOR"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Infra"
+    },
+    {
+      "id": 2,
+      "name": "projeto"
+    },
+    {
+      "id": 3,
+      "name": "Design"
+    },
+    {
+      "id": 4,
+      "name": "programador"
+    },
+    {
+      "id": 5,
+      "name": "planejamento"
+    }
+  ]
 }

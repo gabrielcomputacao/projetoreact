@@ -7,6 +7,7 @@ import Company from "./components/pages/Company";
 import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
 import Project from "./components/pages/Project";
+import ListaProject from "./components/pages/ListaProject";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/projects" element={<Project/>}></Route>
               <Route path="/company" element={<Company/>}></Route>
               <Route path="/contact" element={<Contact/>}></Route>
+              <Route path="/listaProjects" element={<ListaProject/>}></Route>
           </Routes>
         </Container>
          <Footer/>
