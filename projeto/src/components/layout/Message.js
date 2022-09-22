@@ -9,14 +9,15 @@ function Message({ type, msg }) {
     /* entrou no componente confere se a mensamge existe, se nao exister ela retorna e sai do useeffect
     deixando o visible como false e nao mostrando a caixa de mensagem
     */
+  
     if(!msg){
         setVisible(false)
         return
     }
-
+    
     /* se tiver mensagem seta como true */
     setVisible(true)
-
+    
     /* depois de exibir a mensagem ele espera 3000 milisegundos e seta como false a mensagem para ela
         sumir
     */

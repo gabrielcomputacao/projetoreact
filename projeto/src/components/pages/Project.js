@@ -21,7 +21,7 @@ function Project(){
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
-            navigate("/listaProjects",{message: "Projeto criado com sucesso!"})
+            navigate("/listaProjects",{state: {message: "Projeto criado com sucesso!"}} )
             /* essa mensagem esta sendo enviada para o cache do navegador  */
         } )
         .catch( err => console.log(err))
