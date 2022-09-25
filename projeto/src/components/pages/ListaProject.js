@@ -6,9 +6,12 @@ import Container from "../layout/Container";
 import LinkButton from "../layout/LinkButton";
 import ProjectCard from "../project/ProjectCard";
 import { useState, useEffect } from "react";
+import Loading from "../layout/Loading";
 
 function ListaProject() {
   const [projects, setProjects] = useState([]);
+  /* setando o loader como false , pois ele sempre inicia */
+  const [loader, setLoader] = useState(false);
 
   const location = useLocation();
   let message = "";
@@ -26,11 +29,17 @@ function ListaProject() {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        setLoader(true);
         console.log(data);
         setProjects(data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+
+
+
+  
 
   return (
     <div className={style.project_container}>
@@ -52,6 +61,10 @@ function ListaProject() {
               category={element.category}
             />
           ))}
+        {!loader && <Loading />}
+        {loader && projects.length === 0 && (
+          <p>Não Existe Projetos Ainda!</p>
+        )}
       </Container>
     </div>
   );
