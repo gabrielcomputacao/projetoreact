@@ -12,6 +12,7 @@ function ListaProject() {
   const [projects, setProjects] = useState([]);
   /* setando o loader como false , pois ele sempre inicia */
   const [loader, setLoader] = useState(false);
+  const [projetoMessage , setProjetoMessage] = useState("")
 
   const location = useLocation();
   let message = "";
@@ -36,20 +37,34 @@ function ListaProject() {
       .catch((err) => console.log(err));
   }, []);
 
-
-
-
-  
+  function removeProject(id) {
+    fetch(`http://localhost:5002/projects/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setProjects(
+          projects.filter((projeto) => {
+            return projeto.id !== id;
+          })
+        );
+        setProjetoMessage("Projeto Deletado com Sucesso")
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div className={style.project_container}>
       <div className={style.title_container}>
         <h1>Lista de Projetos</h1>
         {/* <a href="#">teste</a> */}
-        <LinkButton to="/listaProjects" text="Criar Projeto"></LinkButton>
+        <LinkButton to="/projects" text="Criar Projeto"></LinkButton>
       </div>
-
       {message && <Message msg={message} type="sucess" />}
+      {projetoMessage && <Message msg={projetoMessage} type="sucess" />}
       <Container customClass="start">
         {projects.length > 0 &&
           projects.map((element, index) => (
@@ -59,12 +74,11 @@ function ListaProject() {
               name={element.name}
               budget={element.budget}
               category={element.category}
+              handleRemove={removeProject}
             />
           ))}
         {!loader && <Loading />}
-        {loader && projects.length === 0 && (
-          <p>Não Existe Projetos Ainda!</p>
-        )}
+        {loader && projects.length === 0 && <p>Não Existe Projetos Ainda!</p>}
       </Container>
     </div>
   );

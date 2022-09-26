@@ -12,15 +12,37 @@
       "id": 1
     },
     {
-      "name": "thauayny",
-      "budget": "8000",
+      "name": "gabriel",
+      "budget": "12000",
+      "category": {
+        "id": "4",
+        "name": "PROGRAMADOR"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 2
+    },
+    {
+      "name": "igor",
+      "budget": "30000",
       "category": {
         "id": "5",
         "name": "PLANEJAMENTO"
       },
       "cost": 0,
       "services": [],
-      "id": 2
+      "id": 3
+    },
+    {
+      "name": "estela",
+      "budget": "20000",
+      "category": {
+        "id": "3",
+        "name": "DESIGN"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 4
     }
   ],
   "categories": [
