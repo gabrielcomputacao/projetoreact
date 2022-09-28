@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loading from "../layout/Loading";
 import Container from "../layout/Container";
 import FormProject from "../project/FormProject";
+import Message from "../layout/Message"
 
 function EditProject() {
   /* pega os paramentros que vem pela url, nessa caso especifico está 
@@ -12,12 +13,14 @@ function EditProject() {
   const { id } = useParams();
 
   const [project, setProject] = useState([]);
-
+  const [message,setMessage] = useState()
+  const [type, setType] = useState()
   /* 
     inicialmente ele nao exibe o formulario de edição do projeto ele exibe os dados
     do projeto por isso setado para false
   */
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showServiceForm, setShowServiceForm] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5002/projects/${id}`, {
@@ -42,14 +45,27 @@ function EditProject() {
     */
     setShowProjectForm(!showProjectForm);
   }
+  function toggleServiceForm() {
+    /* 
+        Seta como o contratio do showProjectForm
+        Se ele estiver false seta como o contrario entao true
+        se ele estiver true transforma em false e set no state
+    */
+    setShowServiceForm(!showServiceForm);
+  }
 
 
   function editPost(project){
+
+        setMessage("")
+
         //budget validation
         console.log(project)
 
         if(project.budget < project.cost){
-            //message
+            setMessage("Os custos não podem passar o orçamento!!")
+            setType("error")
+            return false
         }
 
         fetch(`http://localhost:5002/projects/${project.id}` ,
@@ -65,8 +81,9 @@ function EditProject() {
         .then( res => res.json())
         .then( data => {
             setProject(data)
-            setShowProjectForm(false)
-            //message
+            setShowProjectForm(true)
+            setMessage("Editado com Sucesso")
+            setType("sucess")
         })
         .catch( err => console.log(err))
 
@@ -77,10 +94,11 @@ function EditProject() {
       {project.name ? (
         <div className={styles.project_details}>
           <Container customClass="column">
+            {message && <Message type={type} msg={message} />}
             <div className={styles.details_container}>
               <h1>Projeto: {project.name}</h1>
               <button className={styles.btn} onClick={toggleProjectForm}>
-                {!showProjectForm ? "Editar Projeto" : "Fechar"}
+                {showProjectForm ? "Editar Projeto" : "Fechar"}
                 {/* 
                     se estiver falso o showprojectform ele vai setar o texto do button para editar
                     quando o state passar para verdadeiro ele vai setar para true e vai mudar o valor do texto
@@ -109,6 +127,24 @@ function EditProject() {
                 </div>
               )}
             </div>
+
+                <div className={styles.service_form_container}>
+                    <h2>Adicione um serviço</h2>
+                    <button className={styles.btn} onClick={toggleServiceForm}>
+                      {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
+                    </button>
+                </div>
+                <div className={styles.project_info}>
+                    {showServiceForm && (
+                      <div>
+                        <p>Form</p>
+                      </div>
+                    )}
+                </div>
+                <h2>Serviços</h2>
+                <Container customClass="start">
+                      <p>itens Serviços</p>
+                </Container>
           </Container>
         </div>
       ) : (
