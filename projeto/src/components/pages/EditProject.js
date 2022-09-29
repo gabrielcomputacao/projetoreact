@@ -5,6 +5,7 @@ import Loading from "../layout/Loading";
 import Container from "../layout/Container";
 import FormProject from "../project/FormProject";
 import Message from "../layout/Message"
+import ServiceForm from "../service/ServiceForm";
 
 function EditProject() {
   /* pega os paramentros que vem pela url, nessa caso especifico está 
@@ -36,6 +37,13 @@ function EditProject() {
       })
       .catch((err) => console.log(err));
   }, [id]);
+
+
+  function createService(){
+    
+  }
+
+
 
   function toggleProjectForm() {
     /* 
@@ -136,9 +144,11 @@ function EditProject() {
                 </div>
                 <div className={styles.project_info}>
                     {showServiceForm && (
-                      <div>
-                        <p>Form</p>
-                      </div>
+                      <ServiceForm 
+                      handleSubmit={createService}
+                      textBtn="Adicionar Serviço"
+                      projectData={project}
+                      />
                     )}
                 </div>
                 <h2>Serviços</h2>
