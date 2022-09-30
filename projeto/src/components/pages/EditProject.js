@@ -7,6 +7,8 @@ import FormProject from "../project/FormProject";
 import Message from "../layout/Message"
 import ServiceForm from "../service/ServiceForm";
 
+import { parse , v4 as uuidv4} from "uuid"
+
 function EditProject() {
   /* pega os paramentros que vem pela url, nessa caso especifico está 
         pegando o id
@@ -39,8 +41,43 @@ function EditProject() {
   }, [id]);
 
 
-  function createService(){
+  function createService(project){
+
+    const lastService = project.services[project.services.length - 1]
+
+    /* extensao que da um ID aleatorio para a variavel */
+    lastService.id = uuidv4()
+
+    /* dentro do serviço tambem tem um custo */
+    const lastServiceCost = lastService.cost
     
+    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+
+    if(newCost > parseFloat(project.budget) ){
+      setMessage("ultrapassou o orçamento")
+      setType("error")
+      project.services.pop()
+      return false
+    }
+
+
+    project.cost = newCost
+
+    fetch(`http://localhost:5002/projects/${project.id}`,{
+      method:"PATCH",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(project)
+    })
+    .then( res => res.json())
+    .then( data =>{
+      console.log(data)
+    })
+    .catch(err => console.log(err))
+
+
   }
 
 

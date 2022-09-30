@@ -1,4 +1,4 @@
-import styles from "./FormProject.module.css";
+import styles from "../project/FormProject.module.css";
 
 import {useState} from "react"
 
@@ -9,7 +9,7 @@ import SubmitButton from "../form/SubmitButton";
 function ServiceForm({handleSubmit,textBtn,projectData }){
 
     /* começa com objeto vazio */
-    const [service,setService] = ({})
+    const [service,setService] = useState({})
 
     function submit(e){
         e.preventDefault()
@@ -31,7 +31,7 @@ function ServiceForm({handleSubmit,textBtn,projectData }){
     }
 
     return (
-        <form onSubmit={submit} className={styles.formulario} action="">
+        <form onSubmit={submit} className={styles.formulario} >
             <Input
                 type="text"
                 text="nome do serviço"

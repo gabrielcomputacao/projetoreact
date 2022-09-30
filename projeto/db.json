@@ -29,8 +29,15 @@
         "id": "5",
         "name": "PLANEJAMENTO"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 1200,
+      "services": [
+        {
+          "name": "comrpar",
+          "cost": "1000",
+          "description": "testando cost",
+          "id": "76829aa9-1e8e-4325-901e-2f3e75e55b4d"
+        }
+      ],
       "id": 3
     },
     {
