@@ -29,15 +29,8 @@
         "id": "5",
         "name": "PLANEJAMENTO"
       },
-      "cost": 1200,
-      "services": [
-        {
-          "name": "comrpar",
-          "cost": "1000",
-          "description": "testando cost",
-          "id": "76829aa9-1e8e-4325-901e-2f3e75e55b4d"
-        }
-      ],
+      "cost": 2444,
+      "services": [],
       "id": 3
     },
     {
@@ -47,8 +40,21 @@
         "id": "1",
         "name": "INFRA"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 1313,
+      "services": [
+        {
+          "name": "cabelo",
+          "cost": "1300",
+          "description": "sair com as amigas",
+          "id": "d47d2408-30c1-4dc8-b383-bf25c9a9150c"
+        },
+        {
+          "name": "jogo",
+          "cost": "13",
+          "description": "gol do brasil",
+          "id": "8d736a34-f873-45b3-8a4f-044a163450e5"
+        }
+      ],
       "id": 4
     }
   ],
