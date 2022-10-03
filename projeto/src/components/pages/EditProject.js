@@ -6,6 +6,7 @@ import Container from "../layout/Container";
 import FormProject from "../project/FormProject";
 import Message from "../layout/Message";
 import ServiceForm from "../service/ServiceForm";
+import ServiceCard from "../service/ServiceCard"
 
 import { parse, v4 as uuidv4 } from "uuid";
 
@@ -72,7 +73,7 @@ function EditProject() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setNewService(data);
+       setShowServiceForm(false)
       })
       .catch((err) => console.log(err));
   }
@@ -123,6 +124,36 @@ function EditProject() {
         setType("sucess");
       })
       .catch((err) => console.log(err));
+  }
+
+
+  function removeService(id,cost){
+
+    const servicesUpdate = project.services.filter(
+      (service) => service.id !== id
+    )
+
+    const projectUpdate = project
+
+    projectUpdate.services = servicesUpdate
+
+     projectUpdate.cost =  parseFloat(projectUpdate.cost) - parseFloat(cost)
+
+     fetch(`http://localhost:5002/projects/${projectUpdate.id}`,{
+      method:"PATCH",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(projectUpdate)
+     })
+     .then(res => res.json())
+     .then( data =>{
+      setProject(projectUpdate)
+      setNewService(servicesUpdate)
+      setMessage("serviço removido com sucesso")
+     })
+     .catch(err => console.log(err))
+
   }
 
   return (
@@ -188,10 +219,14 @@ function EditProject() {
                 {
                   newService.length > 0 ? 
                     newService.map((element,index) => (
-                        <div key={index}>
-                          <p>{element.name}</p>
-                          <p>{element.cost}</p>
-                        </div>
+                        <ServiceCard 
+                         id={element.id}
+                         name={element.name}
+                         cost={element.cost}
+                         description={element.description}
+                         key={element.id}
+                         handleRemove={removeService}
+                        />
                     ))
                   :
                   (
